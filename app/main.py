@@ -6,7 +6,7 @@ app.config['weekdays'] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'
 @app.route('/<day>')
 def weekday(day):
     if day not in app.config['weekdays']:
-        return '404 Not Found'
+        return render_template('404.html')
     return render_template('base_day.html',
                             day=day)
 
