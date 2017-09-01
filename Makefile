@@ -1,2 +1,6 @@
 server:
-	. venv/bin/activate; python ~/work/gimmeDeals/app/main.py
+	. venv/bin/activate; python app/main.py
+
+db:
+	rm -f app/deals_app.db
+	. venv/bin/activate; python app/makedb.py
