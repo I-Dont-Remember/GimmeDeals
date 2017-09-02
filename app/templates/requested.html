@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Requested Deals</title>
+</head>
+
+<body>
+  <h3>Suggested Deals</h3>
+  <table>
+    <tr>
+      <th>Day</th>
+      <th>Location</th>
+      <th>Deal</th>
+    </tr>
+    {% for deal in list %}
+    <tr>
+      <td>{{ deal.day.name }}</td>
+      <td>{{ deal.location}}</td>
+      <td>{{ deal.deal }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>

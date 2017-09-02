@@ -1,7 +1,15 @@
 #from dbase import db
 from flask import render_template
 from main import app, db
-from models import Day
+from models import Day, Deal
+
+@app.route('/requested')
+def show_requested():
+    # all() might not be necessary
+    requested_list = Deal.query.filter_by(validated=False).all()
+    print(requested_list)
+    return render_template('requested.html',
+                            list=requested_list)
 
 @app.route('/<day>')
 def weekday(day):
@@ -12,14 +20,5 @@ def weekday(day):
 
 @app.route('/')
 def main():
-    # day = Day(name='today')
-    # db.session.add(day)
-    # db.session.commit()
     return render_template('index.html',
                             weekdays=app.config['WEEKDAYS'])
-@app.route('/today')
-def test():
-    val = Day.query.all()
-    print(val)
-    return render_template('index.html',
-                            weekdays=val)
