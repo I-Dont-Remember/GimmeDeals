@@ -3,12 +3,31 @@ from flask import render_template, request
 from main import app, db
 from models import Day, Deal
 
+def add_deal(requested_day, location, deal):
+    new_deal = Deal(requested_day, location, deal)
+    db.session.add(new_deal)
+    db.session.commit()
+
 @app.route('/create', methods=['POST'])
 def create_deal():
     if request.method == 'POST':
-        print(request.__dict__)
-        print(request.get_json())
+        # print(request.__dict__)
+        json = request.get_json()
+        day = json['day']
+        location = json['location']
+        deal = json['deal']
         # check size of deal/location input, don't trust someone didn't spoof the client
+        if len(location) > 50:
+            return 'Too long location', 400
+
+        if len(deal) > 200:
+            return 'Too long deal', 400
+
+        try:
+            add_deal(day, location, deal)
+        except ValueError:
+            return 'Couldn\'t add deal', 400
+
         return 'Received'
 
 @app.route('/requested')
