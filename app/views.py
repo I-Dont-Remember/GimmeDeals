@@ -49,3 +49,11 @@ def weekday(day):
 def main():
     return render_template('index.html',
                             weekdays=app.config['WEEKDAYS'])
+
+@app.errorhandler(500)
+def internal_error(error):
+    db.session.rollback()
+    return 'Internal Error', 500
+
+@app.errorhandler(404)
+    return render_template('404.html'), 404
