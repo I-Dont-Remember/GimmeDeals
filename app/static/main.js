@@ -2,10 +2,12 @@ var $form = $('#dealForm');
 var $dropdown = $('#dropdown');
 var $location = $('#location');
 var $deal = $('#deal');
+var $buttons = $('.dayButton');
 
 var url = '/create'
 
 $(document).ready(function() {
+
   $form.submit(function(event) {
     console.log('in form submit')
     var json_data = {
@@ -31,6 +33,11 @@ $(document).ready(function() {
       $form[0].reset();
     });
     event.preventDefault();
+  });
+
+  $buttons.on('click', function() {
+    day = $(this).text();
+    window.location = '/' + day
   });
 
 });
