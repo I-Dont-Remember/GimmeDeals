@@ -1,7 +1,14 @@
 #from dbase import db
-from flask import render_template
+from flask import render_template, request
 from main import app, db
 from models import Day, Deal
+
+@app.route('/create', methods=['POST'])
+def create_deal():
+    if request.method == 'POST':
+        print(request.__dict__)
+        print(request.get_json())
+        return 'Received'
 
 @app.route('/requested')
 def show_requested():
