@@ -1,5 +1,5 @@
 #from dbase import db
-from flask import render_template, request
+from flask import render_template, request, session
 from main import app, db
 from models import Day, Deal
 
@@ -56,4 +56,5 @@ def internal_error(error):
     return 'Internal Error', 500
 
 @app.errorhandler(404)
+def not_found(error):
     return render_template('404.html'), 404
