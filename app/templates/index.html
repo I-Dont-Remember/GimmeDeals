@@ -30,8 +30,8 @@
         <option value="{{ day }}">{{ day }}</option>
         {% endfor %}
       </select>
-      <input required id='location' placeholder='Location...' type='text'>
-      <input required id='deal' placeholder="What's this great deal?" type='text'>
+      <input required id='location' placeholder='Location...' type='text' maxlength='50'>
+      <input required id='deal' placeholder="What's this great deal?" type='text' maxlength='200'>
       <button type='submit'>Submit</button>
     </form>
   </div>

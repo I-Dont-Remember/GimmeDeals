@@ -8,6 +8,7 @@ def create_deal():
     if request.method == 'POST':
         print(request.__dict__)
         print(request.get_json())
+        # check size of deal/location input, don't trust someone didn't spoof the client
         return 'Received'
 
 @app.route('/requested')
