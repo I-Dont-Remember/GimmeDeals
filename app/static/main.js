@@ -28,7 +28,7 @@ $(document).ready(function() {
       console.log('failure');
     })
     .always(function() {
-      //$form[0].reset();
+      $form[0].reset();
     });
     event.preventDefault();
   });
