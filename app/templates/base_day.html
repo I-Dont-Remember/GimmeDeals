@@ -11,5 +11,20 @@
     <a href='/'><button class='primary'>Home</button></a>
     <h1>{{ day }}</h1>
   </div>
+
+  <table>
+    <tr>
+      <th>Day</th>
+      <th>Location</th>
+      <th>Deal</th>
+    </tr>
+    {% for deal in deals %}
+    <tr>
+      <td>{{ deal.location}}</td>
+      <td>{{ deal.deal }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
 </body>
 </html>

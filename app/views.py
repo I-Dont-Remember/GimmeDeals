@@ -3,6 +3,12 @@ from flask import render_template, request, session
 from main import app, db
 from models import Day, Deal
 
+def add_validated_deal(day, location, deal):
+    valid_deal = Deal(day, location, deal)
+    valid_deal.validated = True
+    db.session.add(valid_deal)
+    db.session.commit()
+
 def add_deal(requested_day, location, deal):
     new_deal = Deal(requested_day, location, deal)
     db.session.add(new_deal)
@@ -42,8 +48,12 @@ def show_requested():
 def weekday(day):
     if day not in app.config['WEEKDAYS']:
         return render_template('404.html')
+    day_obj = Day.query.filter_by(name=day).first()
+    print('day: %s' % day_obj)
+    deals = day_obj.deals.all()
     return render_template('base_day.html',
-                            day=day)
+                            day=day,
+                            deals=deals)
 
 @app.route('/')
 def main():
