@@ -33,6 +33,7 @@ class Deal(db.Model):
             self.day_id = (Day.query.filter_by(name=day).first()).id
         except Exception as e:
             # Broad to be able to find what is thrown, will change once we know what it is called
+            print('Exception: %s' %e)
             raise ValueError
 
     def __repr__(self):
