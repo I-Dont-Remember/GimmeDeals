@@ -4,26 +4,41 @@ from main import app, db
 from models import Day, Deal
 import config
 import emails
+import schedule
+import time
 
 def send_db_email():
-    print('Running send_db_email()')
+    print('Sending db email')
     print(time.strftime('%H%M%S', time.localtime()))
+    # In future can return these sorted by day
     requested = Deal.query.filter_by(validated=False).all()
-    date = 'date string'
+    try:
+        Deal.query.delete()
+        db.session.commit()
+    except:
+        db.session.rollback()
+        print('Problem deleting requested deals')
+        return -1
+    print(requested)
+    date = time.strftime('%d %b %Y', time.localtime())
+    print(date)
+    # Don't let it try and render elements that don't exist
     rendered_txt = render_template('email.txt',
         requests=requested, date=date)
     rendered_html = render_template('email.html',
         requests=requested, date=date)
-    emails.send_email('Requested Deals from Gimme Deals!',
+    emails.send_email('Requested Deals from Gimme Deals! for %s' %date,
                         config.ADMINS[0],
                         config.PERSONAL_EMAIL,
                         rendered_txt,
-                        rendered_html
-                        # render_template('email.txt',
-                        # requests=requests, the_date=the_date),
-                        # render_template('email.html',
-                        # requests=requests, the_date=the_date)
-                        )
+                        rendered_html)
+    return 0
+
+def thread_run_scheduler():
+    with app.app_context():
+        while 1:
+            schedule.run_pending()
+            time.sleep(1)
 
 def add_validated_deal(day, location, deal):
     valid_deal = Deal(day, location, deal)
