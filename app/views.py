@@ -2,6 +2,28 @@
 from flask import render_template, request, session
 from main import app, db
 from models import Day, Deal
+import config
+import emails
+
+def send_db_email():
+    print('Running send_db_email()')
+    print(time.strftime('%H%M%S', time.localtime()))
+    requested = Deal.query.filter_by(validated=False).all()
+    date = 'date string'
+    rendered_txt = render_template('email.txt',
+        requests=requested, date=date)
+    rendered_html = render_template('email.html',
+        requests=requested, date=date)
+    emails.send_email('Requested Deals from Gimme Deals!',
+                        config.ADMINS[0],
+                        config.PERSONAL_EMAIL,
+                        rendered_txt,
+                        rendered_html
+                        # render_template('email.txt',
+                        # requests=requests, the_date=the_date),
+                        # render_template('email.html',
+                        # requests=requests, the_date=the_date)
+                        )
 
 def add_validated_deal(day, location, deal):
     valid_deal = Deal(day, location, deal)

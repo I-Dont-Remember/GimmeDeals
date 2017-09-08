@@ -1,0 +1,7 @@
+<h3>Here are the requested emails for {{ date }}.</h3>
+
+<p>
+{% for deal in requests %}
+  {{ deal.day.name }}*{{ deal.location }}*{{ deal.deal }}<br \>
+{% endfor %}
+</p>
