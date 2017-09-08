@@ -6,27 +6,29 @@ import config
 import emails
 import schedule
 import time
+import logging as log
 
 def send_db_email():
     print('Sending db email')
-    print(time.strftime('%H%M%S', time.localtime()))
-    # In future can return these sorted by day
-    requested = Deal.query.filter_by(validated=False).all()
-    try:
-        Deal.query.delete()
-        db.session.commit()
-    except:
-        db.session.rollback()
-        print('Problem deleting requested deals')
-        return -1
-    print(requested)
     date = time.strftime('%d %b %Y', time.localtime())
     print(date)
+    # In future can return these sorted by day
+    requested = Deal.query.filter_by(validated=False).all()
     # Don't let it try and render elements that don't exist
     rendered_txt = render_template('email.txt',
         requests=requested, date=date)
     rendered_html = render_template('email.html',
         requests=requested, date=date)
+    try:
+        for deal in rquested:
+            db.session.delete(deal)
+        # Deal.query.filter_by(validated=False).delete()
+        db.session.commit()
+    except:
+        db.session.rollback()
+        print('Problem deleting requested deals')
+        return -1
+
     emails.send_email('Requested Deals from Gimme Deals! for %s' %date,
                         config.ADMINS[0],
                         config.PERSONAL_EMAIL,
