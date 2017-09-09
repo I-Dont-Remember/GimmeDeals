@@ -1,4 +1,4 @@
-from flask import Flask, render_template#send_file
+from flask import Flask, render_template
 from threading import Thread
 import models, views
 import schedule
@@ -10,8 +10,8 @@ app = models.app
 db = models.db
 
 if __name__ == '__main__':
-    schedule.every(2).minutes.do(views.send_db_email)
+    schedule.every().day.at('22:').do(views.send_db_email)
     t = Thread(target=views.thread_run_scheduler)
     t.start()
-    print('starting:' + time.strftime('%H%M%S', time.localtime()))
+    log.info('starting at %s' %(time.strftime('%b-%e %T', time.localtime())))
     app.run(debug=False)

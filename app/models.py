@@ -1,11 +1,14 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail
+import logging
 
+logging.basicConfig(level=logging.INFO)
 app = Flask(__name__)
 app.config.from_object('config')
 db = SQLAlchemy(app)
 mail = Mail(app)
+
 
 class Day(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -35,7 +38,7 @@ class Deal(db.Model):
             self.day_id = (Day.query.filter_by(name=day).first()).id
         except Exception as e:
             # Broad to be able to find what is thrown, will change once we know what it is called
-            print('Exception: %s' %e)
+            logging.error('Deal Exception in creation: %s' %e)
             raise ValueError
 
     def __repr__(self):
