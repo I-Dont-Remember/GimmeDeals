@@ -4,6 +4,12 @@ import unittest
 import config
 from models import app, db, Day, Deal
 
+
+# http://flask.pocoo.org/docs/0.12/quickstart/#accessing-request-data
+# testing requests break, can use test_request_context
+
+#!!!!!!!!!!!!!!!!! These tests are not currently in functional state!!!!!!
+
 class TestCase(unittest.TestCase):
     def setUp(self):
         app.config['TESTING'] = True
