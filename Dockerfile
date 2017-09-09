@@ -1,3 +1,11 @@
-FROM tiangolo/uwsgi-nginx-flask:python3.6
+# Might need adjustment, copied from previous flask project
+
+FROM tiangolo/uwsgi-nginx-flask:flask
+
+COPY requirements.txt /tmp/
+
+RUN pip install -U pip
+
+RUN pip install -r /tmp/requirements.txt
 
 COPY ./app /app
