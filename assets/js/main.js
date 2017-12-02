@@ -3,6 +3,24 @@
 	templated.co @templatedco
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 */
+var deals = {
+	"1": {
+		"day": "Thursday",
+		"location": "Jordan's Pub",
+		"desc": "Rock-n-Roll Bingo" },
+	"2": {
+		"day": "Wednesday",
+		"location": "Red Rock",
+		"desc": "$1 burgers" },
+	"3": {
+		"day": "Monday",
+		"location": "Chaser's",
+		"desc": "Wings for $0.25 apiece" },
+	"4": {
+		"day": "Thursday",
+		"location": "Whiskey Jacks",
+		"desc": "Mixed drinks and beer $0.25" },
+};
 
 (function($) {
 
@@ -60,6 +78,22 @@
 					side: 'right'
 				});
 
+			$('#deals-dropdown').on('change', function() {
+				var table = $('#deals-table');
+				var allRows = $('#deals-table tbody tr');
+				var day = $(this).val();
+
+				allRows.remove();
+				for (key in deals) {
+					var deal = deals[key];
+					if (deal.day == day) {
+						console.log(deal);
+						table.append('<tr><td>' + deal.location +
+									'</td><td>' + deal.desc +
+									'</td></tr>');
+					}
+				}
+			});
 	});
 
 })(jQuery);
