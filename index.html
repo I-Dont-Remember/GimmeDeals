@@ -95,15 +95,18 @@
 		<!-- Three -->
 			<section id="three" class="wrapper">
 				<div class="inner">
-					<form name="Deal Idea" netlify>
+					<form name="Deal Idea" netlify-honeypot="bot-field" netlify>
 						<div class="row uniform">
 							<div class="12u$">
-								<input type="text" name="name" id="name" value="" placeholder="Location" />
+								<input type="text" name="name" id="name" value="" placeholder="Location" required/>
+							</div>
+							<div class="12u$" style="display: none;">
+								<label>Don't fill out:<input name="bot-field"></label>
 							</div>
 							<!-- Break -->
 							<div class="12u$">
 								<div class="select-wrapper">
-									<select name="category" id="category">
+									<select name="category" id="category" required>
 										<option value="">- Weekday -</option>
 										<option value="Monday">Monday</option>
 										<option value="Tuesday">Tuesday</option>
@@ -117,7 +120,7 @@
 							</div>
 							<!-- Break -->
 							<div class="12u$">
-								<textarea name="message" id="message" placeholder="What's the deal?" rows="6"></textarea>
+								<textarea name="message" id="message" placeholder="What's the deal?" rows="6" required></textarea>
 							</div>
 							<!-- Break -->
 							<div class="12u$">
