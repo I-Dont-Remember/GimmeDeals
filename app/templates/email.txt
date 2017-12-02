@@ -1,6 +1,0 @@
-Here are the requested emails for {{ date }}.
-
-{% for deal in requests %}
-  (+){{ deal.day.name }}*{{ deal.location }}*{{ deal.deal }}
-  
-{% endfor %}
