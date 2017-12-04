@@ -7,19 +7,23 @@ var deals = {
 	"1": {
 		"day": "Thursday",
 		"location": "Jordan's Pub",
-		"desc": "Rock-n-Roll Bingo" },
+		"desc": "Rock-n-Roll Bingo",
+		"added": "12 / 2 / 17" },
 	"2": {
 		"day": "Wednesday",
 		"location": "Red Rock",
-		"desc": "$1 burgers" },
+		"desc": "$1 burgers",
+		"added": "12 /3 / 17" },
 	"3": {
 		"day": "Monday",
 		"location": "Chaser's",
-		"desc": "Wings for $0.25 apiece" },
+		"desc": "Wings for $0.25 apiece",
+		"added": "12 / 2 / 17" },
 	"4": {
 		"day": "Thursday",
 		"location": "Whiskey Jacks",
-		"desc": "Mixed drinks and beer $0.25" },
+		"desc": "Mixed drinks and beer $0.25",
+		"added": "12 / 2 / 17" },
 };
 
 (function($) {
@@ -90,6 +94,7 @@ var deals = {
 						console.log(deal);
 						table.append('<tr><td>' + deal.location +
 									'</td><td>' + deal.desc +
+									'</td><td>' + deal.added +
 									'</td></tr>');
 					}
 				}
