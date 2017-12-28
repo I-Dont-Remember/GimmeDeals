@@ -3,29 +3,6 @@
 	templated.co @templatedco
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 */
-var deals = {
-	"1": {
-		"day": "Thursday",
-		"location": "Jordan's Pub",
-		"desc": "Rock-n-Roll Bingo",
-		"added": "12 / 2 / 17" },
-	"2": {
-		"day": "Wednesday",
-		"location": "Red Rock",
-		"desc": "$1 burgers",
-		"added": "12 /3 / 17" },
-	"3": {
-		"day": "Monday",
-		"location": "Chaser's",
-		"desc": "Wings for $0.25 apiece",
-		"added": "12 / 2 / 17" },
-	"4": {
-		"day": "Thursday",
-		"location": "Whiskey Jacks",
-		"desc": "Mixed drinks and beer $0.25",
-		"added": "12 / 2 / 17" },
-};
-
 (function($) {
 
 	skel.breakpoints({
