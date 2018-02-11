@@ -1,15 +1,38 @@
 package main
 
 import (
-    "fmt"
-    "testing"
+	"log"
+	"testing"
+
+	"github.com/aws/aws-lambda-go/events"
+	"github.com/stretchr/testify/assert"
 )
 
+type Test struct {
+	request events.APIGatewayProxyRequest
+	expect  string
+	err     error
+}
 
 func TestHandler(t *testing.T) {
-    ret, _ := Handler(Request{id:5,})
-    fmt.Printf("TEST: ret = %s\n", ret)
-    if ret[0] != "Deals" {
-        t.Errorf("Expected 'Deals', got %s\n", ret[0])
-    }
+	tests := []Test{
+		{
+			request: events.APIGatewayProxyRequest{Body: ""},
+			expect:  "",
+			err:     nil,
+		},
+		{
+			request: events.APIGatewayProxyRequest{Body: ""},
+			expect:  "",
+			err:     nil,
+		},
+	}
+
+	for _, test := range tests {
+		response, err := Handler(test.request)
+		if err == nil {
+			log.Print(response)
+		}
+		assert.NotEqual(t, test.expect, response.Body)
+	}
 }

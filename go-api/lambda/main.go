@@ -1,11 +1,13 @@
 package main
 
 import (
+	"encoding/json"
 	"log"
 	"os"
 
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 
+	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
@@ -18,10 +20,6 @@ var (
 	output    *dynamodb.ScanOutput
 	tableName = "Deals"
 )
-
-type Request struct {
-	id int `json:"id"`
-}
 
 type Deal struct {
 	Id       string `json:"Id"`
@@ -74,8 +72,8 @@ func init() {
 	output = result
 }
 
-// Handler processes the DynamoDB query response and returns formatted json
-func Handler(request Request) ([]Deal, error) {
+// Handler processes the DynamoDB query response and returns formatted json body
+func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	log.Print("Fetching Deals...")
 	var deals []Deal
 
@@ -92,8 +90,17 @@ func Handler(request Request) ([]Deal, error) {
 		log.Print(deal)
 		deals = append(deals, deal)
 	}
-	// No need to marshall into json, already handled by aws-sdk-go
-	return deals, nil
+
+	marshalled, err := json.Marshal(deals)
+	if err != nil {
+		log.Print("Error marshalling deals...")
+		os.Exit(2)
+	}
+
+	return events.APIGatewayProxyResponse{
+		Body:       string(marshalled),
+		StatusCode: 200,
+	}, nil
 }
 
 func main() {
