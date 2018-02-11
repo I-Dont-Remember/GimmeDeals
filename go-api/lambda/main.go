@@ -21,6 +21,7 @@ var (
 	tableName = "Deals"
 )
 
+// Deal is a rough analogue to the DynamoDB schema; json for easy adding to table
 type Deal struct {
 	Id       string `json:"Id"`
 	Day      string `json:"Day"`
@@ -97,9 +98,16 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 		os.Exit(2)
 	}
 
+	// These are necessary alongside API Gateway CORS enabling
+	headers := map[string]string{
+		"Content-Type":                "application/json",
+		"Access-Control-Allow-Origin": "*",
+	}
+
 	return events.APIGatewayProxyResponse{
 		Body:       string(marshalled),
 		StatusCode: 200,
+		Headers:    headers,
 	}, nil
 }
 
