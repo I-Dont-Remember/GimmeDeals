@@ -26,10 +26,11 @@ aws lambda create-function --region <your region> --function-name <your func> \
 
 ## Frontend Search + Filtering
 - First iteration passes all items from database to client and lets JavaScript handle filtering deals for the user
+- **Search**: First iteration inspiration from [w3schools](https://www.w3schools.com/howto/howto_js_filter_lists.asp), filters table rows as word is typed without using
+any external libraries
+  - ElasticSearch will probably be overkill.
 - Considering that the number of deals is unlikely to break 1,000, is it more efficient/user-friendly to always allow the client to handle 
 filtering of the deals based on the user choices instead of making querys to the server every time they want a new one?
-- Search within deals should be able to be handled by one of the many JavaScript libraries that already exist, ElasticSearch will probably be 
-overkill.
 
 ### Sources/References
 - Initial website template from https://templated.co
