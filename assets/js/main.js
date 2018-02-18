@@ -5,6 +5,40 @@
 */
 var dealsData;
 
+function dealsSearch() {
+	var input;
+	input = $("#searchInput");
+	filter = input.val().toUpperCase();
+	console.log("filter:" + filter)
+	table = $("#deals-table");
+	trs = $("tr");
+
+	for (i=0; i < trs.length; i++) {
+		if (trs[i].innerText.toUpperCase().indexOf(filter) > -1) {
+			trs[i].style.display = "";
+		} else {
+			trs[i].style.display = "none";
+		}
+	}
+}
+
+function suggestedSearch() {
+	var input;
+	input = $("#searchSuggested");
+	filter = input.val().toUpperCase();
+	console.log("filter:" + filter)
+	table = $("#suggested-deals-table");
+	trs = $("tr");
+
+	for (i=0; i < trs.length; i++) {
+		if (trs[i].innerText.toUpperCase().indexOf(filter) > -1) {
+			trs[i].style.display = "";
+		} else {
+			trs[i].style.display = "none";
+		}
+	}
+}
+
 
 (function($) {
 	var apiUrl = "https://ayukpzvbmd.execute-api.us-east-2.amazonaws.com/prod/search";
