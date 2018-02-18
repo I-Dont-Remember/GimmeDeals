@@ -3209,3 +3209,12 @@
 				}
 
 		}
+
+/*Extensions*/
+#suggested-deals-table {
+	margin-bottom: 8%;
+}
+
+table, select, input, textarea {
+	font-weight: bold;
+}
