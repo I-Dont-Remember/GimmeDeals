@@ -13,7 +13,7 @@ function dealsSearch() {
 	table = $("#deals-table");
 	trs = $("tr");
 
-	for (i=0; i < trs.length; i++) {
+	for (i=1; i < trs.length; i++) {
 		if (trs[i].innerText.toUpperCase().indexOf(filter) > -1) {
 			trs[i].style.display = "";
 		} else {
