@@ -39,3 +39,4 @@ filtering of the deals based on the user choices instead of making querys to the
 - https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/using-dynamodb-with-go-sdk.html
 - http://www.blog.labouardy.com/serverless-golang-api-aws-lambda/
 - And many more
+
