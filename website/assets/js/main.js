@@ -96,14 +96,17 @@ function updateClock() {
 
 	// Handle 12 hr format
 	var timeSuffix = ( hour < 12) ? "AM": "PM";
-	hour = hour % 12;
+	if (hour % 12 == 0) {
+		hour = 12;
+	} else {
+		hour = hour % 12;
+	}
 
 	// Make sure minutes has two digits
 	minutes = (minutes < 10 ? "0": "") + minutes;
 
 	var time = hour + " : " + minutes + " " + timeSuffix;
-	$('#day').text(day);
-	$('#clock').text(time);
+	$('#clock').text(day + "  " + time);
 };
 
 (function($) {
@@ -127,9 +130,11 @@ function updateClock() {
 			fillCurrentTable();
 		});
 
-		var oneMinute = 60*1000;
+		// Since interval starts on page load not correct time, have
+		// to check multiple times a minute to keep accurate time
+		var twentySeconds = 20*1000;
 		updateClock();
-		setInterval(updateClock, oneMinute);
+		setInterval(updateClock, twentySeconds);
 	});
 
 	$(function() {
