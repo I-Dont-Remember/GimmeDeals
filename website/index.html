@@ -25,8 +25,9 @@
 			<nav id="menu">
 				<ul class="links">
 					<li><a href="index.html">Home</a></li>
-					<li><a href="about.html">About</a></li>
+					<li><a href="all.html">All Deals</a></li>
 					<li><a href="suggested.html">Suggested Deals</a><li>
+					<li><a href="about.html">About</a></li>
 				</ul>
 			</nav>
 
@@ -41,26 +42,15 @@
 
 		<!-- One -->
 			<section id="one" class="wrapper">
+				<header class="align-center">
+					<h1 id="day"></h1>
+					<h3 id="clock"></h3>
+				</header>
 				<div class="inner">
-				<h3>Daily List</h3>
-				<div class="12u$">
-						<div class="select-wrapper">
-							<select name="category" id="deals-dropdown">
-								<option value="">- Weekday -</option>
-								<option value="Monday">Monday</option>
-								<option value="Tuesday">Tuesday</option>
-								<option value="Wednesday">Wednesday</option>
-								<option value="Thursday">Thursday</option>
-								<option value="Friday">Friday</option>
-								<option value="Saturday">Saturday</option>
-								<option value="Sunday">Sunday</option>
-							</select>
-						</div>
-					</div>
 					<br \>
 					<div class="row uniform">
 						<div class="12u$">
-							<input type="text" class="search" id="searchInput" onkeyup="dealsSearch()" placeholder="search (e.g. monday, wings)..." title="Type in term">
+							<input type="text" class="search" id="searchInput" onkeyup="dealsSearch()" placeholder="search (e.g. Sconnie, wings)..." title="Type in term">
 						</div>
 						<div class="12u$">
 						<div class="table-wrapper">
@@ -128,6 +118,40 @@
 									</select>
 								</div>
 							</div>
+							<!-- Break -->
+							<div class="3u 12u$(small)">
+								<input type="radio" id="M" name="M">
+								<label for="M">M</label>
+							</div>
+							<div class="3u 12u$(small)">
+								<input type="radio" id="Tu" name="Tu">
+								<label for="Tu">Tu</label>
+							</div>
+							<div class="3u 12u$(small)">
+								<input type="radio" id="W" name="W">
+								<label for="W">W</label>
+							</div>
+							<div class="3u$ 12u$(small)">
+								<input type="radio" id="Th" name="Th">
+								<label for="Th">Th</label>
+							</div>
+							<!-- Break -->
+							<div class="3u 12u$(small)">
+								<input type="radio" id="F" name="F">
+								<label for="F">F</label>
+							</div>
+							<div class="3u 12u$(small)">
+								<input type="radio" id="Sa" name="Sa">
+								<label for="Sa">Sa</label>
+							</div>
+							<div class="3u 12u$(small)">
+								<input type="radio" id="Su" name="Su">
+								<label for="Su">Su</label>
+							</div>
+							<div class="3u$ 12u$(small)">
+								<input type="radio" id="All" name="All">
+								<label for="All">All</label>
+							</div>				
 							<!-- Break -->
 							<div class="12u$">
 								<textarea name="message" id="message" placeholder="What's the deal?" rows="6" required></textarea>
