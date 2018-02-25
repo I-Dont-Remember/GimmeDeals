@@ -3218,3 +3218,9 @@
 table, select, input, textarea {
 	font-weight: bold;
 }
+
+#allButton {
+	text-align: center;
+	margin: auto;
+	width: 30%;
+}
