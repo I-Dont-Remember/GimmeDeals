@@ -1,4 +1,6 @@
-*.csv
-*.zip
-*/lambda/main
+node_modules
+/build
+/*.log
+*.lock
 
+package-lock.json
