@@ -1,0 +1,12 @@
+
+[context.branch-deploy]
+    command = "npm run build"
+    base = "/"
+    publish = "build/"
+
+
+# used since Preact Router handles routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
