@@ -9,13 +9,24 @@ import Home from '../routes/home';
 import Profile from '../routes/profile';
 
 export default class App extends Component {
-    async componentDidMount() {
-		let res = await fetch(`//api.github.com/search/repositories?q=js`),
-			json = await res.json(),
-			results = json && json.items || [];
-		this.setState({ results });
-	}
-	
+    // componentDidMount() {
+	// 	fetch(`//api.github.com/search/repositories?q=js`),
+	// 		json = await res.json(),
+	// 		results = json && json.items || [];
+	// 	this.setState({ results });
+    // }
+
+    componentDidMount() {
+        const that = this;
+        console.log("did mount")
+		fetch(`//api.github.com/search/repositories?q=js`)
+			.then( (resp) => resp.json())
+	 		.then(function(data) {
+                let results = data && data.items || [];
+                console.log(results)
+				that.setState({ results });
+			})
+		}
 	/** Gets fired when the route changes.
 	 *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
 	 *	@param {string} event.url	The newly routed URL
